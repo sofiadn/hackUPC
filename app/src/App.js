@@ -13,8 +13,11 @@ class App extends Component {
     super(props);
 
     this.state = {
-      isAuthenticated: false
+      isAuthenticated: false,
+      email: ''
     };
+
+    this.updateEmail = this.updateEmail.bind(this);
   }
 
   userHasAuthenticated = authenticated => {
@@ -27,11 +30,16 @@ class App extends Component {
     this.props.history.push("/login");
   }
 
+  updateEmail = (email) => {
+    this.setState({ email });
+  }
 
   render() {
     const childProps = {
       isAuthenticated: this.state.isAuthenticated,
-      userHasAuthenticated: this.userHasAuthenticated
+      userHasAuthenticated: this.userHasAuthenticated,
+      updateEmail: this.updateEmail,
+      email: this.state.email
     };
 
     return (
@@ -39,12 +47,12 @@ class App extends Component {
        <Navbar inverse fluid fixedTop >
         <Navbar.Header>
           <Navbar.Brand>
-           <Link to="/">BeResponsive</Link> 
+           <Link to="/">BeResponsive</Link>
           </Navbar.Brand>
         <Navbar.Toggle />
         </Navbar.Header>
           <Navbar.Collapse>
-          <Nav> 
+          <Nav>
             <NavItem eventKey={1} href="#">Initiative </NavItem>
             <NavDropdown eventKey={2} title="Get Involved" id="basic-nav-dropdown">
               <MenuItem eventKey={2.1}>How?</MenuItem>

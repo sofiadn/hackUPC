@@ -3,158 +3,44 @@ import {Grid,Row,Col,FormGroup,ControlLabel,FormControl} from "react-bootstrap";
 import Card from "./Card.js";
 import { FormInputs } from "./FormInputs.js";
 import { UserCard } from "./UserCard.js";
+import { Nothing } from './Nothing.js';
 import Button from "./CustomButton.js";
+import './User.css';
 
 
 export default class User extends Component {
 
-  render() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: {}
+    };
+  }
+
+  componentDidMount() {
+    fetch('https://r0zcs2y6eb.execute-api.eu-west-1.amazonaws.com/default/getUserData')
+      .then(response => response.json())
+      .then(data => this.setState({ data }));
+  }
+
+  render(props) {
+    const data = this.state.data && this.state.data.length ? this.state.data.find(user => user.email === this.props.email) : null;
+    console.log(`Data: ${JSON.stringify(data)}`);
+    if (!data) {
+      return <Nothing />;
+    }
+
     return (
       <div className="content">
-        <Grid fluid>
-          <Row>
-            <Col md={8}>
-              <Card
-                title="Edit Profile"
-                content={
-                  <form>
-                    <FormInputs
-                      ncols={["col-md-5", "col-md-3", "col-md-4"]}
-                      proprieties={[
-                        {
-                          label: "Company (disabled)",
-                          type: "text",
-                          bsClass: "form-control",
-                          placeholder: "Company",
-                          defaultValue: "Creative Code Inc.",
-                          disabled: true
-                        },
-                        {
-                          label: "Username",
-                          type: "text",
-                          bsClass: "form-control",
-                          placeholder: "Username",
-                          defaultValue: "michael23"
-                        },
-                        {
-                          label: "Email address",
-                          type: "email",
-                          bsClass: "form-control",
-                          placeholder: "Email"
-                        }
-                      ]}
-                    />
-                    <FormInputs
-                      ncols={["col-md-6", "col-md-6"]}
-                      proprieties={[
-                        {
-                          label: "First name",
-                          type: "text",
-                          bsClass: "form-control",
-                          placeholder: "First name",
-                          defaultValue: "Mike"
-                        },
-                        {
-                          label: "Last name",
-                          type: "text",
-                          bsClass: "form-control",
-                          placeholder: "Last name",
-                          defaultValue: "Andrew"
-                        }
-                      ]}
-                    />
-                    <FormInputs
-                      ncols={["col-md-12"]}
-                      proprieties={[
-                        {
-                          label: "Adress",
-                          type: "text",
-                          bsClass: "form-control",
-                          placeholder: "Home Adress",
-                          defaultValue:
-                            "Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
-                        }
-                      ]}
-                    />
-                    <FormInputs
-                      ncols={["col-md-4", "col-md-4", "col-md-4"]}
-                      proprieties={[
-                        {
-                          label: "City",
-                          type: "text",
-                          bsClass: "form-control",
-                          placeholder: "City",
-                          defaultValue: "Mike"
-                        },
-                        {
-                          label: "Country",
-                          type: "text",
-                          bsClass: "form-control",
-                          placeholder: "Country",
-                          defaultValue: "Andrew"
-                        },
-                        {
-                          label: "Postal Code",
-                          type: "number",
-                          bsClass: "form-control",
-                          placeholder: "ZIP Code"
-                        }
-                      ]}
-                    />
-                    <Row>
-                      <Col md={12}>
-                        <FormGroup controlId="formControlsTextarea">
-                          <ControlLabel>About Me</ControlLabel>
-                          <FormControl
-                            rows="5"
-                            componentClass="textarea"
-                            bsClass="form-control"
-                            placeholder="Here can be your description"
-                            defaultValue="Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo."
-                          />
-                        </FormGroup>
-                      </Col>
-                    </Row>
-                    <Button bsStyle="info" pullRight fill type="submit">
-                      Update Profile
-                    </Button>
-                    <div className="clearfix" />
-                  </form>
-                }
-              />
-            </Col>
-            <Col md={4}>
-              <UserCard
-                bgImage="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400"
-                avatar={''}
-                name="Mike Andrew"
-                userName="michael24"
-                description={
-                  <span>
-                    "Lamborghini Mercy
-                    <br />
-                    Your chick she so thirsty
-                    <br />
-                    I'm in that two seat Lambo"
-                  </span>
-                }
-                socials={
-                  <div>
-                    <Button simple>
-                      <i className="fa fa-facebook-square" />
-                    </Button>
-                    <Button simple>
-                      <i className="fa fa-twitter" />
-                    </Button>
-                    <Button simple>
-                      <i className="fa fa-google-plus-square" />
-                    </Button>
-                  </div>
-                }
-              />
-            </Col>
-          </Row>
-        </Grid>>
+        <h1 className="title">
+          An ancident ocurred near you!
+        </h1>
+        <p>
+          There has been a {data.disasterData.disaster} in {data.disasterData.location}.
+          The damaged area is of approximately {data.disasterData.accidentarea} squared kilometers
+          and the current estimates predict {data.disasterData.deathcount} deaths, {data.disasterData.injurycount}
+          injuries and {data.disasterData.homlesscount} people left without a home. Your help is needed!
+        </p>
       </div>
     );
   }

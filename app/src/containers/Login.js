@@ -30,6 +30,7 @@ export default class Login extends Component {
     try {
       await Auth.signIn(this.state.email, this.state.password);
       this.props.userHasAuthenticated(true);
+      this.props.updateEmail(this.state.email);
       this.props.history.push("/user");
     } catch (e) {
       alert(e.message);
@@ -68,11 +69,10 @@ export default class Login extends Component {
           </Button>
             <GoogleButton type="dark"
               onClick={() => { console.log('Google button clicked') }}
-            /> 
+            />
         </form>
-    
+
       </div>
     );
   }
 }
-
