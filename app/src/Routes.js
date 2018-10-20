@@ -4,10 +4,8 @@ import Home from "./containers/Home";
 import NotFound from "./containers/NotFound";
 import Login from "./containers/Login";
 import User from "./containers/User";
-import AppliedRoute from "./components/AppliedRoute";
+import AppliedRoute from "./containers/AppliedRoute";
 import Signup from "./containers/Signup";
-
-
 
 export default ({ childProps }) =>
   <Switch>

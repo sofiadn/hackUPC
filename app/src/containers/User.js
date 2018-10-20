@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Nothing } from './Nothing.js';
 import SimpleMap from "./SimpleMap"
+
 import './User.css';
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;

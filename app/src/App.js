@@ -6,7 +6,6 @@ import { Auth } from "aws-amplify";
 import Routes from "./Routes";
 import React, { Component, Fragment } from "react";
 
-
 class App extends Component {
 
   constructor(props) {

@@ -1,14 +1,7 @@
 import React, { Component } from "react";
-import {
-  HelpBlock,
-  FormGroup,
-  FormControl,
-  ControlLabel, 
-  Button
-} from "react-bootstrap";
+import { HelpBlock, FormGroup, FormControl, ControlLabel, Button } from "react-bootstrap";
 import "./Signup.css";
 import { Auth } from "aws-amplify";
-
 
 export default class Signup extends Component {
   constructor(props) {
@@ -51,7 +44,6 @@ export default class Signup extends Component {
       const newUser = await Auth.signUp({
         username: this.state.email,
         password: this.state.password, 
-//        addr: this.state.addr,
       });
       this.setState({
         newUser
