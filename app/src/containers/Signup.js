@@ -107,6 +107,7 @@ export default class Signup extends Component {
 
   renderForm() {
     return (
+    <div class="jumbotron">
       <form onSubmit={this.handleSubmit}>
         <FormGroup controlId="email" bsSize="large">
           <ControlLabel>Email</ControlLabel>
@@ -141,6 +142,7 @@ export default class Signup extends Component {
           > Register 
         </Button>
       </form>
+    </div>
     );
   }
 
