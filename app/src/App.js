@@ -27,7 +27,7 @@ class App extends Component {
   handleLogout = async event => {
     await Auth.signOut();
     this.userHasAuthenticated(false);
-    this.props.history.push("/login");
+    this.props.history.push("/");
   }
 
   updateEmail = (email) => {
@@ -47,7 +47,7 @@ class App extends Component {
        <Navbar inverse fluid fixedTop >
         <Navbar.Header>
           <Navbar.Brand>
-           <Link to="/">BeResponsive</Link>
+           <Link to="/">Anonymous Heroes</Link>
           </Navbar.Brand>
         <Navbar.Toggle />
         </Navbar.Header>
@@ -58,8 +58,6 @@ class App extends Component {
               <MenuItem eventKey={2.1}>How?</MenuItem>
               <MenuItem eventKey={2.2}>Where?</MenuItem>
               <MenuItem eventKey={2.3}>Why?</MenuItem>
-              <MenuItem divider />
-              <MenuItem eventKey={2.3}>Further Opportunities</MenuItem>
             </NavDropdown>
           </Nav>
 

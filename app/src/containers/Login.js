@@ -40,6 +40,7 @@ export default class Login extends Component {
 
   render() {
     return (
+      <div class="jumbotron">
         <div className="Login">
         <form onSubmit={this.handleSubmit}>
           <FormGroup controlId="email" bsSize="large">
@@ -71,7 +72,7 @@ export default class Login extends Component {
               onClick={() => { console.log('Google button clicked') }}
             />
         </form>
-
+        </div>
       </div>
     );
   }

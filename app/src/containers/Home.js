@@ -7,9 +7,8 @@ export default class Home extends Component {
     return (
       <div className="Home">
         <div className="lander">
-
         <div class="jumbotron-fluid">
-        <h1>BeResponsive</h1>
+        <h1>Anonymous Heroes</h1>
         </div>
         <SimpleMap></SimpleMap>
         </div>
