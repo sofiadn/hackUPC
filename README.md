@@ -1,2 +1,2 @@
-# hackUPC-
-disaster response volunteer app
+# hackUPC project 
+Disaster responce volunteers app 
