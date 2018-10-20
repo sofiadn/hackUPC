@@ -1,0 +1,20 @@
+.map {
+  height: 80vh;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.pointer {
+  width: 50px;
+  height: 25px;
+  background-color: rgba(178, 34, 34, 0.3);
+  border-radius: 50px 50px 0 0;
+}
+
+.pointer-2 {
+  width: 50px;
+  height: 25px;
+  background-color: rgba(178, 34, 34, 0.7);
+  border-radius: 50px 50px 0 0;
+  transform: rotate(180deg);
+}

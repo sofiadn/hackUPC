@@ -1,12 +1,9 @@
 import React, { Component } from "react";
-import {Grid,Row,Col,FormGroup,ControlLabel,FormControl} from "react-bootstrap";
-import Card from "./Card.js";
-import { FormInputs } from "./FormInputs.js";
-import { UserCard } from "./UserCard.js";
 import { Nothing } from './Nothing.js';
-import Button from "./CustomButton.js";
+import SimpleMap from "./SimpleMap"
 import './User.css';
 
+const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 export default class User extends Component {
 
@@ -33,14 +30,19 @@ export default class User extends Component {
     return (
       <div className="content">
         <h1 className="title">
-          An ancident ocurred near you!
+          An accident occurred near you!
         </h1>
-        <p>
-          There has been a {data.disasterData.disaster} in {data.disasterData.location}.
-          The damaged area is of approximately {data.disasterData.accidentarea} squared kilometers
-          and the current estimates predict {data.disasterData.deathcount} deaths, {data.disasterData.injurycount}
-          injuries and {data.disasterData.homlesscount} people left without a home. Your help is needed!
-        </p>
+        <div>
+          <p>Type: {data.disasterData.disaster}</p>
+          <p>Location: {data.disasterData.location}</p>
+          <p>People Needed: {data.disasterData.peopleneeded}</p>
+          <p>Damaged Area: {data.disasterData.accidentarea} km2</p>
+          <p>Estimated {data.disasterData.deathcount} deaths </p>
+          <p>Injuries: {data.disasterData.injurycount} </p>
+          <p>Homeless people: {data.disasterData.homelesscount} </p>
+          <p>Your help is needed!</p>
+        </div>
+        <SimpleMap needed={data.disasterData.peopleneeded} location={data.disasterData.location} />
       </div>
     );
   }

@@ -48,11 +48,12 @@ exports.handler = (event, context, callback) => {
         Record: mockData
       };
 
-      let peopleNeeded;
+      let peopleneeded;
       machinelearning.predict(mlParams, (err, data) => {
         if (err) console.log(err, err.stack);
         else {
-          peopleNeeded = data * 400;
+          peopleneeded = Math.round(data.Prediction.predictedValue * 400);
+          docClient.scan(usersParams, onScan);
         }
       });
 
@@ -88,7 +89,8 @@ exports.handler = (event, context, callback) => {
                 accidentarea,
                 deathcount,
                 injurycount,
-                homelesscount
+                homelesscount,
+                peopleneeded
               };
 
               // Update user entry
@@ -116,7 +118,7 @@ exports.handler = (event, context, callback) => {
         }
       };
 
-      docClient.scan(usersParams, onScan);
+
 
 
       // const params = {
