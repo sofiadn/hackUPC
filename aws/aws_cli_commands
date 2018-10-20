@@ -34,3 +34,5 @@ aws lambda create-event-source-mapping \
 aws dynamodb put-item \
     --table-name DisasterTable \
     --item Name={S="Hurricane."},Timestamp={S="2016-11-18:14:32:17"},Location={S="Oxford Road Manchester"}
+
+zip publishNewDisaster.zip publishNewDisaster.js && aws lambda update-function-code --function-name publishNewDisaster --zip-file fileb://publishNewDisaster.zip && aws lambda invoke  --function-name publishNewDisaster --payload file://newDisaster.json output.txt

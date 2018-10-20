@@ -25,7 +25,38 @@
                     },
                     "Location": {
                         "S": "Edifici B6 del Campus Nord, C/Jordi Girona, 1-3, 08034 Barcelona"
-                    }
+                    },
+                    "Needs": {
+                        "S": "Food, Beds, Help"
+                    },
+                    "disaster_type": {
+                       "S": "Hurricane"
+                   },
+                   "city": {
+                       "S": "San Francisco"
+                   },
+                   "region": {
+                       "S": "America"
+                   },
+                   "current_month": {
+                       "S": "Sep"
+                   },
+                   "accident_duration": {
+                       "N": 3700
+                   },
+                   "accident_area": {
+                       "N": 1.2
+                   },
+                   "death_count": {
+                       "N": 2
+                   },
+                   "injury_count": {
+                       "N": 25
+                   },
+                   "homeless_count": {
+                       "N": 50
+                   }
+
                 },
                 "SequenceNumber": "13021600000000001596893679",
                 "SizeBytes": 112,
