@@ -1,0 +1,36 @@
+aws dynamodb create-table \
+    --table-name DisasterTable \
+    --attribute-definitions AttributeName=Name,AttributeType=S AttributeName=Location,AttributeType=S AttributeName=Radius,AttributeType=N AttributeName=AffectedPeople,AttributeType=N AttributeName=Timestamp,AttributeType=S \
+    --key-schema AttributeName=Name,KeyType=HASH  AttributeName=Timestamp,KeyType=RANGE \
+    --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 \
+    --stream-specification StreamEnabled=true,StreamViewType=NEW_AND_OLD_IMAGES
+
+
+aws sns subscribe \
+    --topic-arn arn:aws:sns:eu-west-1:$ARN_ROLE:contactTopic \
+    --protocol email \
+    --notification-endpoint raullm7@gmail.com
+
+aws lambda create-function \
+    --region eu-west-1 \
+    --function-name publishNewDisaster \
+    --zip-file fileb://publishNewDisaster.zip \
+    --role arn:aws:iam::$ARN_ROLE:role/lambdaRole \
+    --handler publishNewDisaster.handler \
+    --timeout 5 \
+    --runtime nodejs4.3
+
+aws lambda update-function-code \
+  --function-name publishNewDisaster \
+  --zip-file fileb://publishNewDisaster.zip
+
+aws lambda create-event-source-mapping \
+    --region eu-west-1 \
+    --function-name publishNewDisaster \
+    --event-source arn:aws:dynamodb:eu-west-1:$ARN_ROLE:table/DisasterTable/stream/2018-10-20T11:17:20.907  \
+    --batch-size 1 \
+    --starting-position TRIM_HORIZON
+
+aws dynamodb put-item \
+    --table-name DisasterTable \
+    --item Name={S="Hurricane."},Timestamp={S="2016-11-18:14:32:17"},Location={S="Oxford Road Manchester"}
