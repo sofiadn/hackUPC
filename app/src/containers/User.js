@@ -33,8 +33,8 @@ export default class User extends Component {
           An accident occurred near you!
         </h1>
         <div>
-          <p>Type: {data.disasterData.disaster}</p>
-          <p>Location: {data.disasterData.location}</p>
+          <p>Type: {data.disasterData.disaster.replace(/"/g, '')}</p>
+          <p>Location: {data.disasterData.location.replace(/"/g, '')}</p>
           <p>People Needed: {data.disasterData.peopleneeded}</p>
           <p>Damaged Area: {data.disasterData.accidentarea} km2</p>
           <p>Estimated {data.disasterData.deathcount} deaths </p>
